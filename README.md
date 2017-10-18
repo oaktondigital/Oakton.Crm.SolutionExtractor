@@ -1,0 +1,23 @@
+# Oakton.Crm.SolutionExtractor
+Scripts to enable the extraction and packaging of CRM solutions. Developed for Dynamics 365. Note : No testing was done against on-premise CRM due to lack of availability of environments.
+
+CRM solution Export and unpack PowerShell Script.
+	
+Instructions
+1. Copy the contents of the Microsoft.Xrm.Data.PowerShell folder to your PowerShell modules folder. (Replace the Xrm assemblies with a previous version if required.)
+2. There are two bootstrap files containing settings. Extract-SolutionBootstrap.ps1 and Package-SolutionBootstrap.ps1. They are not to be checked into source control and contain a users personal settings to log in to CRM and folder settings.
+3. The settings are :
+	a. iscrmonline - 1/0 1: Log into CRM Online, 0: Log into on-premise.
+	b. interactivelogin - 1/0 1: For Online the login wizard will appear. For on-premise you will be prompted for credentials, 0: no user intervention is required - for automated processes
+	c. serverurl - URL/Server name of the server.
+	d. username - for non-interactive logins
+	e. password - password for non-interactive logins
+	f. solutionName - name of the solution
+	g. targetFolder - Where the solution file will be extracted to. Where temp solution files will be stored.
+	h. Region - CRM region for CRM online. Typically "Oceania"
+	i. solutiontype - 0 == Unmanaged, 1 == Managed, 2 == Both
+	j. organisationname - Name of the CRM organisation.
+4. Extract-SolutionBootstrap.ps1 logs into CRM, exports a solution and expands it to the folder.
+5. Package-SolutionBootstrap.ps1 logs into CRM, packages an extracted folder into a solutiopn and imports (including publish) to CRM.
+6. The solutionextractor.exe file in the Executable folder is required.
+	
